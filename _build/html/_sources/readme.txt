@@ -23,13 +23,13 @@ Sphinx auto-generated  documentation of the source code modules is +++here+++.
 GUI design evolution from v1.0 to v2.0
 ===============================================================================
 
-_static\plot_MTF_v1.0_screenshot.PNG
+.. figure:: _static\plot_MTF_v1.0_screenshot.PNG
    :align: center
 
    Version 1.0 GUI.
 
 
-_static\plot_MTF_v2.0_screenshot.PNG
+.. figure:: _static\plot_MTF_v2.0_screenshot.PNG
    :align: center
 
    Version 2.0 GUI
@@ -40,19 +40,19 @@ Sample output
 
 Below are some examples of the plots that this GUI can produce.
 
-_static\default.PNG
+.. figure:: _static\default.PNG
    :align: center
 
    The default plotting results (with an optional title).
 
 
-_static\multiple_freq_and_spec.PNG
+.. figure:: _static\multiple_freq_and_spec.PNG
    :align: center
 
    Multiple spatial frequencies and a single horizontal specification line.
 
 
-_static\avg_MTF.PNG
+.. figure:: _static\avg_MTF.PNG
    :align: center
 
    The average MTF of multiple spatial frequencies with the same horizontal
@@ -60,7 +60,7 @@ _static\avg_MTF.PNG
    the "Number of rows on the plot" field.
 
 
-_static\same.PNG
+.. figure:: _static\same.PNG
    :align: center
 
    All data on the same figure.  Useful for visualizing the defocus positions
