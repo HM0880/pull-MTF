@@ -1,0 +1,480 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>process_THF_file module &mdash; Plot Through-Focus MTF 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Plot Through-Focus MTF 2.0 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Plot Through-Focus MTF 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-process_THF_file">
+<span id="process-thf-file-module"></span><h1>process_THF_file module<a class="headerlink" href="#module-process_THF_file" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="process_THF_file.flatten_and_name_array">
+<tt class="descclassname">process_THF_file.</tt><tt class="descname">flatten_and_name_array</tt><big>(</big><em>path</em>, <em>slicename</em>, <em>input_array</em><big>)</big><a class="headerlink" href="#process_THF_file.flatten_and_name_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flattens and names input arrays so that they can be easily saved to a
+external file.  Used in <tt class="docutils literal"><span class="pre">plot_one_THF_file</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path</strong> : string</p>
+<blockquote>
+<div><p>Complete path name.  This function will split the path and extract
+only the filename, which will be used for the final output.</p>
+</div></blockquote>
+<p><strong>slicename</strong> : string</p>
+<blockquote>
+<div><p>Can be any name, but must <em>not</em> have the &#8220;sep&#8221; value used to join the
+names in &#8220;filename&#8221; below.</p>
+</div></blockquote>
+<p><strong>input_array</strong> : numpy.ndarray</p>
+<blockquote>
+<div><p>The MTF data to be flattened.  The input freq is the first entry of
+this array.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>name</strong> : string</p>
+<blockquote>
+<div><p>The slicename and the spatial frequency.  Obtained from the first
+entry in <tt class="docutils literal"><span class="pre">named_array</span></tt>.</p>
+</div></blockquote>
+<p><strong>named_output</strong> :  list</p>
+<blockquote class="last">
+<div><p>Returns the MTF data in a flattened list format with the first entry
+in the format <tt class="docutils literal"><span class="pre">filename</span> <span class="pre">slicename</span> <span class="pre">at</span> <span class="pre">freq</span></tt>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#process_THF_file.plot_one_THF_file" title="process_THF_file.plot_one_THF_file"><tt class="xref py py-obj docutils literal"><span class="pre">plot_one_THF_file</span></tt></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="process_THF_file.get_all_file_paths">
+<tt class="descclassname">process_THF_file.</tt><tt class="descname">get_all_file_paths</tt><big>(</big><em>selected_dir</em><big>)</big><a class="headerlink" href="#process_THF_file.get_all_file_paths" title="Permalink to this definition">¶</a></dt>
+<dd><p>Walks through the selected directory, and if the file path ends in <tt class="docutils literal"><span class="pre">.thf</span></tt>
+or <tt class="docutils literal"><span class="pre">.THF</span></tt>, then that path is appended to a list.</p>
+<p>This is used to plot multiple <tt class="docutils literal"><span class="pre">.thf</span></tt> files by generating the list of
+<tt class="docutils literal"><span class="pre">.thf</span></tt> paths and then feeding that list to the <tt class="xref py py-func docutils literal"><span class="pre">plot_single_THF()</span></tt>
+function, which will then step through the list and plot each file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>selected_dir</strong> : string</p>
+<blockquote>
+<div><p>path to a folder (i.e. directory) containing at least one <tt class="docutils literal"><span class="pre">.thf</span></tt> file</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>all_paths</strong> : list of strings</p>
+<blockquote class="last">
+<div><p>Returns a list of all the paths ending in <tt class="docutils literal"><span class="pre">.thf</span></tt> or <tt class="docutils literal"><span class="pre">.THF</span></tt> in the
+selected directory.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><tt class="xref py py-obj docutils literal"><span class="pre">plot_single_THF</span></tt></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="process_THF_file.plot_all">
+<tt class="descclassname">process_THF_file.</tt><tt class="descname">plot_all</tt><big>(</big><em>selected_dir</em>, <em>plots_down</em>, <em>main_title</em>, <em>freqs</em>, <em>spec_lines</em>, <em>plot_avg</em>, <em>same_plot</em>, <em>colors</em>, <em>maximize_plot</em><big>)</big><a class="headerlink" href="#process_THF_file.plot_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a given directory with <tt class="docutils literal"><span class="pre">.thf</span></tt> files and at least one spatial
+frequency, plot all the data from the <tt class="docutils literal"><span class="pre">.thf</span></tt> files at the given
+frequency(s).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>selected_dir</strong> : string</p>
+<blockquote>
+<div><p>path to the folder containing the <tt class="docutils literal"><span class="pre">.thf</span></tt> files to plot</p>
+</div></blockquote>
+<p><strong>plots_down</strong> : integer (optional parameter in the GUI)</p>
+<blockquote>
+<div><p>Number of rows of subplots.</p>
+<p>If only there is one file in the directory, then <tt class="docutils literal"><span class="pre">plots_down</span></tt> is set
+to 1.</p>
+<p>If the user specifies more rows than there are plots to be made, then
+<tt class="docutils literal"><span class="pre">plots_down</span></tt> is set to the number of <tt class="docutils literal"><span class="pre">.thf</span></tt> paths in the directory.
+This will produce a plot with that has 1 column and N rows, where N is
+the number of <tt class="docutils literal"><span class="pre">.thf</span></tt> paths in the directory.</p>
+<p>If no value is entered into the GUI, then the GUI code sets &#8220;2&#8221; as the
+default <tt class="docutils literal"><span class="pre">plots_down</span></tt> value.</p>
+</div></blockquote>
+<p><strong>main_title</strong> : string (optional parameter in the GUI)</p>
+<blockquote>
+<div><p>Super-title above all the subplots</p>
+</div></blockquote>
+<p><strong>freqs</strong> : comma-separated string of desired spatial frequencies</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">todo:</th><td class="field-body">work on (1) the type and (2) the documentation of desired_freqs</td>
+</tr>
+</tbody>
+</table>
+<p>This function sorts &#8220;freqs&#8221; from lowest to highest.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">warning:</th><td class="field-body">None of the other functions sort the frequencies.  Only this
+top-level function does.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>spec_lines</strong> : comma-separated string of desired spec lines</p>
+<blockquote>
+<div><p>(Optional parameter in the GUI)
+Horizontal lines for MTF specs.  If no value is entered, then
+&#8220;spec_lines&#8221; is set to [0].  This function sorts &#8220;spec_lines&#8221; from
+lowest to highest.</p>
+</div></blockquote>
+<p><strong>plot_avg</strong> : boolean</p>
+<blockquote>
+<div><p>If true, then plot the average of the MTF.  Otherwise, plot horizontal
+and vertical MTF separately.</p>
+</div></blockquote>
+<p><strong>same_plot</strong> : boolean</p>
+<blockquote>
+<div><p>If true, then plot all the MTF curves on the same plot.  Otherwise,
+plot each file&#8217;s MTF curves on a separate subplot.</p>
+</div></blockquote>
+<p><strong>maximize_plot</strong> : boolean</p>
+<blockquote>
+<div><p>If true, then maximize the plot window.  This is used in the wxPython
+GUI only.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>output</strong> : Displays a plot</p>
+<blockquote class="last">
+<div><p>A plot is produced with each <tt class="docutils literal"><span class="pre">.thf</span></tt> path as its own subplot.  There
+can be multiple spatial frequencies on each subplot.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="process_THF_file.plot_one_THF_file">
+<tt class="descclassname">process_THF_file.</tt><tt class="descname">plot_one_THF_file</tt><big>(</big><em>path</em>, <em>title</em>, <em>freqs</em>, <em>spec_lines</em>, <em>plot_avg</em>, <em>input_colors</em><big>)</big><a class="headerlink" href="#process_THF_file.plot_one_THF_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>For one given path and desired input frequencies, extract and plot at
+least one through-focus MTF curve as a function of defocus position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path</strong> : string</p>
+<blockquote>
+<div><p>through-focus MTF data file ending in <tt class="docutils literal"><span class="pre">.thf</span></tt> or <tt class="docutils literal"><span class="pre">.THF</span></tt></p>
+</div></blockquote>
+<p><strong>title</strong> : string</p>
+<blockquote>
+<div><p>title for the plot</p>
+</div></blockquote>
+<p><strong>freqs</strong> : 1D list of floats</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">todo:</th><td class="field-body">work on (1) the type and (2) the documentation</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>spec_lines</strong> : 1D list of floats</p>
+<blockquote>
+<div><p>horizontal lines for MTF specs</p>
+</div></blockquote>
+<p><strong>plot_avg</strong> : boolean</p>
+<blockquote>
+<div><p>If true, then plot the average of the MTF.  Otherwise, plot horizontal
+and vertical MTF separately.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>output_data</strong> : list</p>
+<blockquote>
+<div><p>Returns a list of the MTF(s) at the desired spatial frequencies with
+the first entry in the format <tt class="docutils literal"><span class="pre">filename</span> <span class="pre">SLICENAME</span> <span class="pre">at</span> <span class="pre">freq</span></tt>, where
+<tt class="docutils literal"><span class="pre">SLICENAME</span></tt> is either &#8220;horz&#8221;, &#8220;vert&#8221;, or &#8220;avg&#8221;.</p>
+</div></blockquote>
+<p>Displays a plot</p>
+<blockquote class="last">
+<div><p>Plot of the MTF for the user-selected frequencies.  Uses
+solid lines with points for the horizontal data and dashed lines with
+points for the vertical data.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="process_THF_file.pull_MTF_data">
+<tt class="descclassname">process_THF_file.</tt><tt class="descname">pull_MTF_data</tt><big>(</big><em>path</em>, <em>desired_freqs</em><big>)</big><a class="headerlink" href="#process_THF_file.pull_MTF_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pulls all the horizontal or vertical data stored in &#8220;path&#8221;, averages
+the horizontal + vertical data, then extracts the row vectors corresponding
+to the desired input frequencies.</p>
+<p>Returns three Numpy arrays of the horizontal, vertical, and average MTF
+data corresponding to the desired spatial frequencies.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path</strong> : string</p>
+<blockquote>
+<div><p>through-focus MTF data file ending in <tt class="docutils literal"><span class="pre">.thf</span></tt> or <tt class="docutils literal"><span class="pre">.THF</span></tt></p>
+</div></blockquote>
+<p><strong>desired_freqs</strong> : 1D list of floats</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">todo:</th><td class="field-body">work on (1) type and (2) documentation of &#8220;desired_freqs&#8221;</td>
+</tr>
+</tbody>
+</table>
+<p>The user will enter the frequencies into the GUI (<tt class="docutils literal"><span class="pre">plot_MTF_GUI.py</span></tt>)
+as a comma-separated string, and then the GUI splits the string by the
+commas, converts it to a +++Numpy array+++, sorts from smallest to
+largest, and converts the type to float.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>output</strong> : three arrays (horizontal, vertical, and average MTF data)</p>
+<blockquote class="last">
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">todo:</th><td class="field-body">returns as list of arrays???</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li><tt class="docutils literal"><span class="pre">horz[all_idx]</span></tt> &#8211; horizontal data at the desired frequencies</li>
+<li><tt class="docutils literal"><span class="pre">vert[all_idx]</span></tt> &#8211; vertical data at the desired frequencies</li>
+<li><tt class="docutils literal"><span class="pre">average_MTF[all_idx]</span></tt> &#8211; average data at the desired frequencies</li>
+</ol>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">todo:</th><td class="field-body">Throw an error if the user inputs a freq that isn&#8217;t in the data.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="process_THF_file.pull_defocus">
+<tt class="descclassname">process_THF_file.</tt><tt class="descname">pull_defocus</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#process_THF_file.pull_defocus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pulls the defocus data at the end of the file and returns it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path</strong> : string</p>
+<blockquote>
+<div><p>through-focus MTF data file ending in <tt class="docutils literal"><span class="pre">.thf</span></tt> or <tt class="docutils literal"><span class="pre">.THF</span></tt></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>defocus</strong> : array of floats</p>
+<blockquote class="last">
+<div><p>The defocus positions in microns along the <img class="math" src="../_images/math/84d7271dd9e78c1e05d6c3c6ecb60309ef7dfc73.png" alt="z"/> axis as a
+numpy.ndarray of floats</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="process_THF_file.pull_horz_MTF">
+<tt class="descclassname">process_THF_file.</tt><tt class="descname">pull_horz_MTF</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#process_THF_file.pull_horz_MTF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Numpy array of the all the horizontal data in the through-focus
+MTF data file at &#8220;path&#8221;.</p>
+<dl class="docutils">
+<dt>From stackoverflow.com/questions/18865058/extract-values-between-two-</dt>
+<dd>strings-in-a-text-file-using-python</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path</strong> : string</p>
+<blockquote>
+<div><p>through-focus MTF data file ending in <tt class="docutils literal"><span class="pre">.thf</span></tt> or <tt class="docutils literal"><span class="pre">.THF</span></tt></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>output</strong> : array</p>
+<blockquote class="last">
+<div><p>numpy.ndarray of all the horizontal MTF data in &#8220;path&#8221;</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#process_THF_file.pull_vert_MTF" title="process_THF_file.pull_vert_MTF"><tt class="xref py py-obj docutils literal"><span class="pre">pull_vert_MTF</span></tt></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>Data will be saved between the strings &#8220;Horizontal Freq (lp/mm)  MTF &#64;&#8221;
+and &#8220;Vertical Freq (lp/mm)  MTF &#64;&#8221; (not including those strings).</p>
+<p>There is a corresponding function (<tt class="docutils literal"><span class="pre">pull_vert_MTF</span></tt>) that pulls the
+vertical MTF data.</p>
+<p>Code from stackoverflow.com/questions/18865058/extract-values-between-two-
+strings-in-a-text-file-using-python</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="process_THF_file.pull_vert_MTF">
+<tt class="descclassname">process_THF_file.</tt><tt class="descname">pull_vert_MTF</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#process_THF_file.pull_vert_MTF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Numpy array of all the vertical data in the through-focus MTF
+data file at &#8220;path&#8221;.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>path</strong> : string</p>
+<blockquote>
+<div><p>through-focus MTF data file ending in <tt class="docutils literal"><span class="pre">.thf</span></tt> or <tt class="docutils literal"><span class="pre">.THF</span></tt></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>output</strong> : array</p>
+<blockquote class="last">
+<div><p>numpy.ndarray of all the vertical MTF data in &#8220;path&#8221;</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#process_THF_file.pull_horz_MTF" title="process_THF_file.pull_horz_MTF"><tt class="xref py py-obj docutils literal"><span class="pre">pull_horz_MTF</span></tt></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>Data will be saved between the strings &#8220;Vertical Freq (lp/mm)  MTF &#64;&#8221;
+and &#8220;Defocus Intensity Data: Horiz  Vert&#8221; (not including those strings).</p>
+<p>There is a corresponding function (<tt class="docutils literal"><span class="pre">pull_horz_MTF</span></tt>) that pulls the
+horizontal MTF data.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/+autodoc/process_THF_file.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Plot Through-Focus MTF 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Hannah Miller.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
