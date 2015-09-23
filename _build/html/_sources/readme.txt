@@ -17,7 +17,7 @@ number of these ``.thf`` files in a given folder.
 
 The two main files are ``process_THF_file.py`` and ``plot_MTF_GUI.py``.  Sphinx 
 auto-generated  documentation of the ``process_THF_file.py`` is 
-<here <https://htmlpreview.github.io/?https://github.com/HM0880/pull-MTF/blob/master/_build/html/%2Bautodoc/process_THF_file.html>`__.
+`here <https://htmlpreview.github.io/?https://github.com/HM0880/pull-MTF/blob/master/_build/html/%2Bautodoc/process_THF_file.html>`__.
 
 Four sample data files are in this repository's ``data`` folder.
 
